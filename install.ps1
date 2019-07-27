@@ -7,10 +7,12 @@ else {
 	$os = 'win'
 }
 
+$webClient = New-Object System.Net.WebClient
+
 # Download Firefox.
 $installerUrl = "https://download.mozilla.org/?product=firefox-latest&os=$os&lang=en-US"
 $installerPath = "$env:TEMP\firefox-setup.exe"
-(New-Object System.Net.WebClient).DownloadFile($installerUrl, $installerPath)
+$webClient.DownloadFile($installerUrl, $installerPath)
 Write-Output 'Downloaded Firefox setup.'
 
 # Install Firefox.
@@ -19,10 +21,19 @@ $installerProc = Start-Process -FilePath $installerPath -ArgumentList @('/S') -P
 $installerProc.WaitForExit()
 Write-Output 'Installed Firefox.'
 
+$firefoxRoot = 'C:\Program Files\Mozilla Firefox'
 
-# TODO: Enable AutoConfig.
-# $firefoxRoot = 'C:\Program Files\Mozilla Firefox'
-# $autoConfigText = "pref('general.config.filename', 'firefox.cfg');`npref('general.config.obscure_value', 0);`npref('browser.startup.homepage', 'http://example.com');`n"
-# $autoConfigPath = "$firefoxRoot\defaults\pref\autoconfig.js"
-# [IO.File]::WriteAllText($autoConfigPath, $autoConfigText)
-# Write-Output 'Enabled AutoConfig.'
+# Enable AutoConfig.
+$autoConfigUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/autoconfig.js'
+$autoConfigPath = "$firefoxRoot\defaults\pref\autoconfig.js"
+$webClient.DownloadFile($autoConfigUrl, $autoConfigPath)
+Write-Output 'Enabled AutoConfig.'
+
+# Download configuration.
+$configUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/config.js'
+$configPath = "$firefoxRoot\config.js"
+$webClient.DownloadFile($configUrl, $configPath)
+Write-Output 'Downloaded configuration.'
+
+# Start Firefox.
+Start-Process "$firefoxRoot\firefox.exe"
