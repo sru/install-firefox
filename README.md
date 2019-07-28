@@ -2,7 +2,16 @@
 
 Install Firefox semi-automatically in 사지방.
 
-# Installation
+## Rationale
+
+The computers in 사지방 almost resets every reboot and every login.
+There isn't any consistency on what gets reset and what does not.
+Firefox is installed on some computers,
+but, if installed, it is always old version.
+I tweak Firefox preferences to ensure I don't leave any sensitive information after using Firefox.
+This is just a way to automate installing Firefox to latest version and tweaking preferences.
+
+## Installation
 
 Run following in `cmd.exe`:
 
