@@ -47,7 +47,7 @@ pref('datareporting.policy.dataSubmissionEnabled', false);
 pref('dom.battery.enabled', false);
 pref('dom.webaudio.enabled', false);
 pref('extensions.allowPrivateBrowsingByDefault', true);
-pref('extensions.autoDisableScopes', 14);
+pref('extensions.autoDisableScopes', 0b1101);
 pref('extensions.getAddons.cache.enabled', false);
 pref('extensions.getAddons.showPane', false);
 pref('extensions.pocket.enabled', false);
