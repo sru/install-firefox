@@ -62,6 +62,7 @@ pref('network.captive-portal-service.enabled', false);
 pref('network.cookie.cookieBehavior', 1);
 pref('network.cookie.lifetimePolicy', 2);
 pref('network.http.referer.spoofSource', true);
+pref('network.trr.mode', 2);
 pref('privacy.donottrackheader.enabled', true);
 pref('privacy.trackingprotection.cryptomining.enabled', true);
 pref('privacy.trackingprotection.enabled', true);
