@@ -44,11 +44,6 @@ $addons = @(
 		AddonId = 'uBlock0@raymondhill.net'
 	},
 	@{
-		Name = 'privacy-badger17';
-		AccountId = '5474073';
-		AddonId = 'jid1-MnnxcxisBPnSXQ@jetpack'
-	},
-	@{
 		Name = 'https-everywhere';
 		AccountId = '5474073';
 		AddonId = 'https-everywhere@eff.org'
