@@ -85,3 +85,6 @@ $parentProcess = Get-Process -Id $parentProcessId
 If ($parentProcess.ProcessName -eq 'cmd') {
 	$parentprocess.CloseMainWindow()
 }
+
+# Also close IE.
+(Get-Process iexplore) | ForEach-Object { $_.CloseMainWindow() }
