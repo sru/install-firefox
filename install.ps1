@@ -83,3 +83,10 @@ Start-Process "${firefoxRoot}\firefox.exe"
 Write-Output 'Started Firefox.'
 
 Write-Output 'Done! Enjoy.'
+
+# Close the parent CMD window.
+$parentProcessId = (Get-WmiObject -Class Win32_Process -Filter "ProcessId = '$PID'").ParentProcessId
+$parentProcess = Get-process -Id $parentProcessId
+If ($parentProcess.ProcessName -eq 'cmd')) {
+	$parentprocess.CloseMainWindow()
+}
