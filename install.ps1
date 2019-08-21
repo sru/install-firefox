@@ -79,12 +79,12 @@ Write-Output 'Started Firefox.'
 
 Write-Output 'Done! Enjoy.'
 
+# Close IE.
+(Get-Process iexplore) | ForEach-Object { $_.CloseMainWindow() }
+
 # Close the parent CMD window.
 $parentProcessId = (Get-WmiObject -Class Win32_Process -Filter "ProcessId = '$PID'").ParentProcessId
 $parentProcess = Get-Process -Id $parentProcessId
 If ($parentProcess.ProcessName -eq 'cmd') {
 	$parentprocess.CloseMainWindow()
 }
-
-# Also close IE.
-(Get-Process iexplore) | ForEach-Object { $_.CloseMainWindow() }
