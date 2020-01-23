@@ -85,6 +85,8 @@ Write-Output 'Done! Enjoy.'
 # Close the parent CMD window.
 $parentProcessId = (Get-WmiObject -Class Win32_Process -Filter "ProcessId = '$PID'").ParentProcessId
 $parentProcess = Get-Process -Id $parentProcessId
+# Write process name for debugging purpose.
+Write-Output "Parent process name: $($parentProcess.ProcessName)"
 If ($parentProcess.ProcessName -eq 'cmd') {
 	$parentprocess.CloseMainWindow()
 }
