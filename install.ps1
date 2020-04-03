@@ -58,7 +58,9 @@ $addonUrl = 'https://addons.mozilla.org/en-US/firefox/addon/{0}/'
 $addonDownloadUrl = 'https://addons.mozilla.org/firefox/downloads/latest/{0}/addon-{1}-latest.xpi'
 
 # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Distribution_options/Sideloading_add-ons
-$addonPath = "${env:APPDATA}\Mozilla\Extensions\{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+# https://support.mozilla.org/en-US/kb/deploying-firefox-with-extensions
+# Sideloading addons is disabled from version 74 and on.
+$addonPath = "${firefoxRoot}\distribution\extensions"
 
 # Ensure the addon path exists.
 New-Item -Path $addonPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
