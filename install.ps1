@@ -47,10 +47,7 @@ $policiesJson = @'
 	}
 }
 '@
-Set-Content `
-	-Path "${distributionPath}\policies.json"
-	-Encoding ASCII
-	-Value $policiesJson
+Set-Content -Path "${distributionPath}\policies.json" -Encoding ASCII -Value $policiesJson
 Write-Output 'Created policies.json file.'
 
 # Download addons.
@@ -78,8 +75,8 @@ $addonDownloadUrl = 'https://addons.mozilla.org/firefox/downloads/latest/{0}/add
 # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Distribution_options/Sideloading_add-ons
 # https://support.mozilla.org/en-US/kb/deploying-firefox-with-extensions
 # Sideloading addons is disabled from version 74 and on.
-$addonPath = "${distributionPath}\extensions"
 
+$addonPath = "${distributionPath}\extensions"
 # Ensure the addon path exists.
 New-Item -Path $addonPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
