@@ -37,7 +37,7 @@ $policiesJson = @'
 		"DisableFormHistory": true,
 		"DisablePocket": true,
 		"DisableProfileImport": true,
-		"DNSOverHTTPS: {
+		"DNSOverHTTPS": {
 			"Enabled": true,
 			"Locked": true
 		},
