@@ -24,16 +24,34 @@ Write-Output 'Installed Firefox.'
 $firefoxRoot = 'C:\Program Files\Mozilla Firefox'
 
 # Enable AutoConfig.
-$autoConfigUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/autoconfig.js'
-$autoConfigPath = "${firefoxRoot}\defaults\pref\autoconfig.js"
-$webClient.DownloadFile($autoConfigUrl, $autoConfigPath)
-Write-Output 'Enabled AutoConfig.'
+# $autoConfigUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/autoconfig.js'
+# $autoConfigPath = "${firefoxRoot}\defaults\pref\autoconfig.js"
+# $webClient.DownloadFile($autoConfigUrl, $autoConfigPath)
+# Write-Output 'Enabled AutoConfig.'
 
 # Download configuration.
-$configUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/config.js'
-$configPath = "${firefoxRoot}\config.js"
-$webClient.DownloadFile($configUrl, $configPath)
-Write-Output 'Downloaded configuration.'
+# $configUrl = 'https://raw.githubusercontent.com/sru/install-firefox/master/config.js'
+# $configPath = "${firefoxRoot}\config.js"
+# $webClient.DownloadFile($configUrl, $configPath)
+# Write-Output 'Downloaded configuration.'
+
+$distributionPath = "${firefoxRoot}\distribution"
+# Ensure the path exists.
+New-Item -Path $distributionPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+
+# Create policies.json file.
+$policiesJson = @'
+{
+	"policies": {
+		"DisableMasterPasswordCreation": true
+	}
+}
+'@
+Set-Content `
+	-Path "${distributionPath}\policies.json"
+	-Encoding ASCII
+	-Value $policiesJson
+Write-Output 'Created policies.json file.'
 
 # Download addons.
 
@@ -60,7 +78,7 @@ $addonDownloadUrl = 'https://addons.mozilla.org/firefox/downloads/latest/{0}/add
 # https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Distribution_options/Sideloading_add-ons
 # https://support.mozilla.org/en-US/kb/deploying-firefox-with-extensions
 # Sideloading addons is disabled from version 74 and on.
-$addonPath = "${firefoxRoot}\distribution\extensions"
+$addonPath = "${distributionPath}\extensions"
 
 # Ensure the addon path exists.
 New-Item -Path $addonPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
