@@ -57,7 +57,7 @@ $policiesJson = @'
 		"NoDefaultBookmarks": true,
 		"OfferToSaveLogins": false,
 		"RequestedLocales": ["en-US", "ko-KR"],
-		"SanitizeOnShutdown": true,
+		"SanitizeOnShutdown": true
 	}
 }
 '@
