@@ -66,7 +66,7 @@ Write-Output 'Created policies.json file.'
 # Create default preferences.
 $defaultPrefPath = "${firefoxRoot}\browser\defaults\preferences"
 # Ensure the path exists.
-New-Item -Path $distributionPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
+New-Item -Path $defaultPrefPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 $prefs = @'
 defaultPref('browser.startup.homepage', 'about:blank');
 defaultPref('browser.urlbar.trimURLS', false);
