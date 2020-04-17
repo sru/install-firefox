@@ -69,7 +69,8 @@ $defaultPrefPath = "${firefoxRoot}\browser\defaults\preferences"
 New-Item -Path $defaultPrefPath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 $prefs = @'
 pref('browser.startup.homepage', 'about:blank', locked);
-pref('browser.urlbar.trimURLs', false);
+pref('browser.urlbar.trimURLs', false, locked);
+pref('browser.newtabpage.enabled', false, locked);
 '@
 Set-Content -Path "${defaultPrefPath}\config.js" -Encoding ASCII -Value $prefs
 Write-Output 'Created default preferences.'
